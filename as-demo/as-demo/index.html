@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+#header {
+    background-color:BlueViolet;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+#nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:650px;
+    width:200px;
+    float:left;
+    padding:5px;	      
+}
+#section {
+    width:1000px;
+    float:left;
+    padding:10px;	 	 
+}
+#footer {
+    background-color:BlueViolet;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;	 	 
+}
+</style>
+</head>
+
+<body>
+
+<div id="header">
+<h1>Auto Scaling Demo</h1>
+</div>
+
+<div id="nav">
+<b>Related Services: </b></br></br>
+<a href="https://support.telefonicaopencloud.com/en-us/ecs_dld/index.html">ECS</a><br>
+<a href="https://support.telefonicaopencloud.com/en-us/ims_dld/index.html">IMS</a><br>
+<a href="https://support.telefonicaopencloud.com/en-us/ces_dld/index.html">CES</a><br>
+<a href="https://support.telefonicaopencloud.com/en-us/elb_dld/index.html">ELB</a><br>
+<a href="https://support.telefonicaopencloud.com/en-us/smn_dld/index.html">SMN</a><br>
+<a href="https://support.telefonicaopencloud.com/en-us/cts_dld/index.html">CTS</a><br>
+</div>
+
+<script type="text/javascript">
+
+function getIPAddress()
+{
+return ("MyIPAddress")
+}
+
+</script>
+
+<div id="section">
+<strong>
+<p style="font-family:verdana;background-color:yellow;color:red;font-size:20px;">
+<script type="text/javascript">
+document.write("IP Address	: " + getIPAddress())
+</script>
+</p>
+</strong>
+
+<h2>Introduction to AS</h2>
+<p>
+Auto Scaling (AS) is a service that automatically adjusts service resources based on your service requirements and configured AS policies.
+You can specify scaling configurations and policies based on service requirements.
+These configurations and policies free you from having to repeatedly adjust resources to keep up with service changes and demand spikes,
+helping you reduce resources required and manpower costs. Figure 1-1 shows the steps in a typical AS process.
+</p>
+<p>
+<b>Figure 1-1 AS process</b>
+</p>
+<p>
+<img src="./img/Figure1-1-AS-process.png" width="500" height="400">
+</p>
+</div>
+
+<div id="footer">
+Copyright @ <a href="https://console.vivocloudopen.com.br">VIVO Open Cloud</a>
+</div>
+
+</body>
+</html>
