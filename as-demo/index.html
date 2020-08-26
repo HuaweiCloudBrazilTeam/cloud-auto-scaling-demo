@@ -4,7 +4,7 @@
 <head>
 <style>
 #header {
-    background-color:BlueViolet;
+    background-color:rgb(226, 43, 52);
     color:white;
     text-align:center;
     padding:5px;
@@ -17,22 +17,51 @@
     float:left;
     padding:5px;	      
 }
+#nginx {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:650px;
+    width:300px;
+    float:right;
+    padding:5px;
+}
 #section {
     width:1000px;
-    float:left;
+    float:center;
     padding:10px;	 	 
 }
 #footer {
-    background-color:BlueViolet;
+    background-color:rgb(226, 43, 52);
     color:white;
     clear:both;
     text-align:center;
     padding:5px;	 	 
 }
 </style>
+
+<script>
+    var ref;
+    function checkRefresh() {
+        if (document.cookie == "refresh=1") {
+            document.getElementById("check").checked = true;
+            ref = setTimeout(function(){location.reload();}, 1000);
+        } else {
+        }
+    }
+    function changeCookie() {
+        if (document.getElementById("check").checked) {
+            document.cookie = "refresh=1";
+            ref = setTimeout(function(){location.reload();}, 1000);
+        } else {
+            document.cookie = "refresh=0";
+            clearTimeout(ref);
+        }
+    }
+</script>
+
 </head>
 
-<body>
+<body onload="checkRefresh();">
 
 <div id="header">
 <h1>Auto Scaling Demo</h1>
@@ -40,32 +69,30 @@
 
 <div id="nav">
 <b>Related Services: </b></br></br>
-<a href="https://support.telefonicaopencloud.com/en-us/ecs_dld/index.html">ECS</a><br>
-<a href="https://support.telefonicaopencloud.com/en-us/ims_dld/index.html">IMS</a><br>
-<a href="https://support.telefonicaopencloud.com/en-us/ces_dld/index.html">CES</a><br>
-<a href="https://support.telefonicaopencloud.com/en-us/elb_dld/index.html">ELB</a><br>
-<a href="https://support.telefonicaopencloud.com/en-us/smn_dld/index.html">SMN</a><br>
-<a href="https://support.telefonicaopencloud.com/en-us/cts_dld/index.html">CTS</a><br>
+<a href="https://support.huaweicloud.com/intl/en-us/ecs/index.html">ECS</a><br>
+<a href="https://support.huaweicloud.com/intl/en-us/ims/index.html">IMS</a><br>
+<a href="https://support.huaweicloud.com/intl/en-us/ces/index.html">CES</a><br>
+<a href="https://support.huaweicloud.com/intl/en-us/elb/index.html">ELB</a><br>
+<a href="https://support.huaweicloud.com/intl/en-us/smn/index.html">SMN</a><br>
+<a href="https://support.huaweicloud.com/intl/en-us/cts/index.html">CTS</a><br>
+</div>
+<div id="nginx">
+    <b>Backend Server Information</b><br></br>
+    <p><span>Server name:</span> <span>server_hostname</span></p>
+    <p><span>Server address:</span> <span>server_address</span></p>
+
+<!--
+    <p class="smaller"><span>User Agent:</span> <span>client_browser</span></p><br>
+    <p class="smaller"><span>URI:</span> <span>server_url</span></p><br>
+    <p class="smaller"><span>Doc Root:</span> <span>document_root</span></p><br>
+    <p class="smaller"><span>Date:</span> <span>server_date</span></p><br>
+    <p class="smaller"><span>NGINX Frontend Load Balancer IP:</span> <span>remote_addr</span></p><br>
+    <p class="smaller"><span>Client IP:</span> <span>proxied_for_ip</span></p><br>
+    <p class="smaller"><span>NGINX Version:</span> <span>nginx_version</span></p><br> 
+-->    
 </div>
 
-<script type="text/javascript">
-
-function getIPAddress()
-{
-return ("MyIPAddress")
-}
-
-</script>
-
 <div id="section">
-<strong>
-<p style="font-family:verdana;background-color:yellow;color:red;font-size:20px;">
-<script type="text/javascript">
-document.write("IP Address	: " + getIPAddress())
-</script>
-</p>
-</strong>
-
 <h2>Introduction to AS</h2>
 <p>
 Auto Scaling (AS) is a service that automatically adjusts service resources based on your service requirements and configured AS policies.
@@ -82,7 +109,8 @@ helping you reduce resources required and manpower costs. Figure 1-1 shows the s
 </div>
 
 <div id="footer">
-Copyright @ <a href="https://console.vivocloudopen.com.br">VIVO Open Cloud</a>
+    <input type="checkbox" id="check" onchange="changeCookie()"> Auto Refresh</input>
+Copyright @ <a href="https://support.huaweicloud.com/intl/en-us/index.html">Huawei Cloud</a>
 </div>
 
 </body>
