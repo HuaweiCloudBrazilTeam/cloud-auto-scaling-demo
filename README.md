@@ -54,6 +54,7 @@ We assume you have created your own resources, the resources created below on Hu
 
 3. Security Group (sg-demo)
     ![Security Group](/images/sg-demo01.jpg)
+   Security Group (sg-demo rules) 
     ![Security Group Rules](/images/sg-demo02.jpg)
 
 4. Private Image (ecs-demo-img)
@@ -109,20 +110,24 @@ After successful creation, you can see the newly created AS Configuration in the
  
 3. Add Policy
 A scaling policy specifies the conditions for triggering a scaling action as well as the triggered operation. If the conditions are met, a scaling action is triggered to perform the required operation.
+
 A policy can be of Alarm, Scheduled, or Periodic type.
-•	Alarm: AS automatically increases or decreases the number of ECS instances in an AS
+
+- Alarm: AS automatically increases or decreases the number of ECS instances in an AS
 group or sets the number of ECS instances to a specified value if Cloud Eye (CES)
 generates an alarm for a configured metric, such as CPU usage.
-•	Periodic: AS increases or decreases the number of ECS instances in an AS group or sets the number of ECS instances to a specified value at a configured interval, such as one
+
+- Periodic: AS increases or decreases the number of ECS instances in an AS group or sets the number of ECS instances to a specified value at a configured interval, such as one
 day, one week, or month.
-•	Scheduled: AS automatically increases or decreases the number of ECS instances in an
+
+- Scheduled: AS automatically increases or decreases the number of ECS instances in an
 AS group or sets the number of ECS instances to a specified value at a specified time
 Policy as-policy-cpu-high tells the AS Group: If the average CPU Usage of AS Group is higher or equal 80%, then add 1 instance
  
-Policy as-policy-cpu-low tells the AS Group: If the average CPU Usage of AS Group is lower or equal 80%, then reduce 1 instance
+Policy *as-policy-cpu-low* tells the AS Group: If the average CPU Usage of AS Group is lower or equal 30%, then reduce 1 instance
  
 The following policies are created.
-NOTE: In this example I used CPU Usage, you can created memory usage alarm to trigger scaling action.
+- **NOTE:** In this example I used CPU Usage, you can created other alarm to trigger scaling action.
  
 4. Modify Configuration of AS Group
 Now the Configuration Name is empty for the AS Group, please click Modify next to Configuration Name and choose the AS Configuration as-config-demo to relate it to AS Group as-group-demo.

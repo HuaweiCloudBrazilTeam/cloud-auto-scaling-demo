@@ -1,18 +1,23 @@
 ###############################
 
-Change *hwcping.com.br* to your onw domain name or deploy it to the default 
+Change *hwcping.com.br* to your onw domain name or deploy it to the default.
+
 Ref.: https://docs.nginx.com/nginx/deployment-guides/setting-up-nginx-demo-environment/
 
 ###############################
 
-Configuring Nginx:
+Install stress to simulate some load to the webserver
 
-0. apt install nginx stress  -y && apt
-1. mkdir -p /var/www/hwcping.com.br/html
-2. chown -R $USER:$USER /var/www/hwcping.com.br/html
-3. chmod -R 755 /var/www/hwcping.com.br
-4. deploy as-demo directory content to /var/www/hwcping.com.br/html/
-5. configure nginx app server: nano /etc/nginx/sites-available/hwcping.com.br
+1. apt install stress -y
+
+Install & Configuring Nginx:
+
+1. apt install nginx -y
+2. mkdir -p /var/www/hwcping.com.br/html
+3. chown -R $USER:$USER /var/www/hwcping.com.br/html
+4. chmod -R 755 /var/www/hwcping.com.br
+5. deploy as-demo directory content to /var/www/hwcping.com.br/html/
+6. configure nginx app server: nano /etc/nginx/sites-available/hwcping.com.br
 ````
 server {
     listen 80 ;
@@ -40,8 +45,8 @@ server {
         }
 }
 ````
-6. ln -s /etc/nginx/sites-available/hwcping.com.br /etc/nginx/sites-enabled/
-7. configure nginx server: nano /etc/nginx/nginx.conf
+7. ln -s /etc/nginx/sites-available/hwcping.com.br /etc/nginx/sites-enabled/
+8. configure nginx server: nano /etc/nginx/nginx.conf
 ````
 ...
 http {
@@ -51,5 +56,5 @@ http {
 }
 ...
 ````
-8. nginx -t
-9. systemctl restart nginx
+9. nginx -t
+10. systemctl enable nginx && systemctl restart nginx
