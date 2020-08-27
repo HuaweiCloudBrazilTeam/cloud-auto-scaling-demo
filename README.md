@@ -13,15 +13,15 @@ Abstract：Auto Scaling (AS) is a somewhat cool feature which is almost the stan
 ## Description
 In this auto scaling demo, I did the following:
 
-    - Create a simple **web application** which will print the ECS instance IP address on which it runs
+Create a simple **web application** which will print the ECS instance IP address on which it runs
 
-    - Create a **private image** with the pre-installed web application and some scripts to generate CPU/memory load to the ECS instance
+Create a **private image** with the pre-installed web application and some scripts to generate CPU/memory load to the ECS instance
 
-    - Create an **ELB instance** and a listener on it. AS service will cooperate with the ELB to register a newly created ECS instance to it, and de-register a removed ECS instance from it
+Create an **ELB instance** and a listener on it. AS service will cooperate with the ELB to register a newly created ECS instance to it, and de-register a removed ECS instance from it
 
-    - Create an **auto scaling group** with 2 alarm policies set:
-        - *as-policy-cpu-high:* If average CPU usage >= 80%, then add 1 instance
-        - *as-policy-cpu-low:* If average CPU usage <= 35%, then reduce 1 instance
+- Create an **auto scaling group** with 2 alarm policies set:
+    - *as-policy-cpu-high:* If average CPU usage >= 80%, then add 1 instance
+    - *as-policy-cpu-low:* If average CPU usage <= 35%, then reduce 1 instance
 
 The auto scaling demo is a very comprehensive example, since it relates to the following services:
 
