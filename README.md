@@ -47,26 +47,26 @@ The auto scaling demo is a very comprehensive example, since it relates to the f
 We assume you have created your own resources, the resources created below on Huawei Cloud are references for this guide:
 
 1. VPC (vpc-demo)
-    [VPC](imgages/vpc-demo.jpg)
+    [VPC](/imgages/vpc-demo.jpg)
 
 2. Subnet (subnet-1)
-    [Subnet](images/subnet-demo.jpg)
+    [Subnet](/images/subnet-demo.jpg)
 
 3. Security Group (sg-demo)
-    [Security Group](images/sg-demo01.jpg)
-    [Security Group Rules](images/sg-demo02.jpg)
+    [Security Group](/images/sg-demo01.jpg)
+    [Security Group Rules](/images/sg-demo02.jpg)
 
 4. Private Image (ecs-demo-img)
-    [System ECS Image](images/img-demo.jpg)
+    [System ECS Image](/images/img-demo.jpg)
 
 5. ELB (elb-demo)
-    [ELB](images/elb-demo.jpg)
+    [ELB](/images/elb-demo.jpg)
 
 6. ELB Listener (listener-demo)
-    [Listeners](images/listener-demo.jpg)
+    [Listeners](/images/listener-demo.jpg)
 
 7. ECS instace with Ubuntu Server
-    [ECS](images/ecs-demo.jpg)
+    [ECS](/images/ecs-demo.jpg)
 
 
 ## Web Application
