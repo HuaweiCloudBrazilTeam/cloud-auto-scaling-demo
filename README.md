@@ -4,10 +4,13 @@ Step-by-step how to use Huawei Cloud Autoscaling + ELB
 
 Abstract：Auto Scaling (AS) is a somewhat cool feature which is almost the standard of cloud providers. It is a service that automatically adjusts service resources based on your service requirements and configured AS policies.
 
-[Description](#description)
-[Prerequisites](#prerequisites)
-[Web Application](#web-application)
-[Auto Scaling Demo](#auto-scaling-demo)
+- [Description](#description)
+
+- [Prerequisites](#prerequisites)
+
+- [Web Application](#web-application)
+
+- [Auto Scaling Demo](#auto-scaling-demo)
 
 ## Description
 In this auto scaling demo, I did the following:
