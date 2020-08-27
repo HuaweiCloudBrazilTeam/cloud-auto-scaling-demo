@@ -47,7 +47,7 @@ The auto scaling demo is a very comprehensive example, since it relates to the f
 We assume you have created your own resources, the resources created below on Huawei Cloud are references for this guide:
 
 1. VPC (vpc-demo)
-    ![VPC](/imgages/vpc-demo.jpg)
+    ![VPC](/images/vpc-demo.jpg)
 
 2. Subnet (subnet-1)
     ![Subnet](/images/subnet-demo.jpg)
