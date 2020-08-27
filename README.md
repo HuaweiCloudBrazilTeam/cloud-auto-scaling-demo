@@ -13,11 +13,11 @@ Abstract：Auto Scaling (AS) is a somewhat cool feature which is almost the stan
 ## Description
 In this auto scaling demo, I did the following:
 
-Create a simple **web application** which will print the ECS instance IP address on which it runs
+- Create a simple **web application** which will print the ECS instance IP address on which it runs
 
-Create a **private image** with the pre-installed web application and some scripts to generate CPU/memory load to the ECS instance
+- Create a **private image** with the pre-installed web application and some scripts to generate CPU/memory load to the ECS instance
 
-Create an **ELB instance** and a listener on it. AS service will cooperate with the ELB to register a newly created ECS instance to it, and de-register a removed ECS instance from it
+- Create an **ELB instance** and a listener on it. AS service will cooperate with the ELB to register a newly created ECS instance to it, and de-register a removed ECS instance from it
 
 - Create an **auto scaling group** with 2 alarm policies set:
     - *as-policy-cpu-high:* If average CPU usage >= 80%, then add 1 instance
@@ -25,22 +25,22 @@ Create an **ELB instance** and a listener on it. AS service will cooperate with 
 
 The auto scaling demo is a very comprehensive example, since it relates to the following services:
 
-    - [ECS:](https://support.huaweicloud.com/intl/en-us/ecs/index.html) Elastic Cloud Server (ECS) instances are added/Removed from [AS](https://support.huaweicloud.com/intl/en-us/as/index.html) Group by scaling actions
+- [ECS:](https://support.huaweicloud.com/intl/en-us/ecs/index.html) Elastic Cloud Server (ECS) instances are added/Removed from [AS](https://support.huaweicloud.com/intl/en-us/as/index.html) Group by scaling actions
 
-    - [IMS:](https://support.huaweicloud.com/intl/en-us/ims/index.html) Create a private image through Image Management Service (IMS), with web application deployed, ECS instances are created by it
+- [IMS:](https://support.huaweicloud.com/intl/en-us/ims/index.html) Create a private image through Image Management Service (IMS), with web application deployed, ECS instances are created by it
 
-    - [CES:](https://support.huaweicloud.com/intl/en-us/ces/index.html) If an alarm-triggering policy is configured, AS works together with Cloud Eye Service (CES) to trigger scaling actions in the event that a specified alarm is generated
+- [CES:](https://support.huaweicloud.com/intl/en-us/ces/index.html) If an alarm-triggering policy is configured, AS works together with Cloud Eye Service (CES) to trigger scaling actions in the event that a specified alarm is generated
 
-    - [ELB:](https://support.huaweicloud.com/intl/en-us/elb/index.html) After Elastic Load Balance (ELB) is configured, AS automatically adds ECS instances to or removes ECS instances from the ELB service in a scaling action
+- [ELB:](https://support.huaweicloud.com/intl/en-us/elb/index.html) After Elastic Load Balance (ELB) is configured, AS automatically adds ECS instances to or removes ECS instances from the ELB service in a scaling action
 
-    - [SMN:](https://support.huaweicloud.com/intl/en-us/smn/index.html) Simple Message Notification (SMN) can push messages about auto scaling group activities to users so they can get the current status of auto scaling group in a timely manner
+- [SMN:](https://support.huaweicloud.com/intl/en-us/smn/index.html) Simple Message Notification (SMN) can push messages about auto scaling group activities to users so they can get the current status of auto scaling group in a timely manner
 
-    - [CTS:](https://support.huaweicloud.com/intl/en-us/cts/index.html) With Cloud Trace Service (CTS), you can record the activities of the auto scaling events, which can be used for future inquiries, audit and backtracking
+- [CTS:](https://support.huaweicloud.com/intl/en-us/cts/index.html) With Cloud Trace Service (CTS), you can record the activities of the auto scaling events, which can be used for future inquiries, audit and backtracking
 
 
 ## Prerequisites
-    - Huawei Cloud Account: [Huawei Cloud](https://intl.huaweicloud.com/en-us/)
-        -   **Notes** ：This article is **NOT** a replacement of User Guide of a certain service. That is to say, you have to familiar with basic Huawei Cloud operations, such as how to create a private image from an ECS instance, how to create an ELB instance and a listener, etc. If you do not know how to do these, please refer to the User Guide of a certain service: [Huawei Cloud Help Center](https://support.huaweicloud.com/intl/en-us/index.html)
+- Huawei Cloud Account: [Huawei Cloud](https://intl.huaweicloud.com/en-us/)
+    -   **Notes** ：This article is **NOT** a replacement of User Guide of a certain service. That is to say, you have to familiar with basic Huawei Cloud operations, such as how to create a private image from an ECS instance, how to create an ELB instance and a listener, etc. If you do not know how to do these, please refer to the User Guide of a certain service: [Huawei Cloud Help Center](https://support.huaweicloud.com/intl/en-us/index.html)
 
 We assume you have created your own resources, the resources created below on Huawei Cloud are references for this guide:
 
@@ -71,7 +71,7 @@ We assume you have created your own resources, the resources created below on Hu
 
 1. Please refer to [Web app guide](webapp.md) to install nginx and deploy *as-demo app* on your Ubuntu ECS instance.
 
-**NOTE:** In this example, I used Ubuntu 18.04. However, it is not a mandatory, you can use your own Operating Sytem and application server version.
+- **NOTE:** In this example, I used Ubuntu 18.04. However, it is not a mandatory, you can use your own Operating Sytem and application server version.
 
 2. Bind an [EIP](https://support.huaweicloud.com/intl/en-us/eip/index.html) to your ECS instance and try to access your web server. If you can see a web page with Auto Scaling Demo displayed and your IP address, congratulations, your web application is successfylly deployed.
 
@@ -85,7 +85,7 @@ An *AS group* consists of a collection of ECS instances and *AS policies* that h
 
 Go to *Auto Scaling* and create an AS group. I used some information in *Prerequisites section*, please adjust the parameters according to your own environment.
 
-**NOTE:** I choose *Use ELB* in this example, so all the ECS instances created will be added to ELB as backend ECS instances.
+- **NOTE:** I choose *Use ELB* in this example, so all the ECS instances created will be added to ELB as backend ECS instances.
 
 <<Add Create AS Group Image>>
  
