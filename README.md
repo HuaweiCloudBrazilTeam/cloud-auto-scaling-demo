@@ -85,10 +85,10 @@ In trigger conditions 2 and 4, a scaling action is automatically triggered to ch
 More details about scaling actions and triggers can be shown in the table below:
 ![lifecycle](/images/lifecycle-table.jpg)
 
-### Consecutive Occurrences
+###### Consecutive Occurrences
 - Set the number of consecutive times the threshold must be exceeded for the alarm to be generated. If Occurrences is set to 3, the alarm will be generated after the threshold is exceeded for the third consecutive time.
 
-### Cooldown Period
+###### Cooldown Period
 - The cooldown period starts after each scaling action is complete. During the cooldown period, scaling actions triggered by alarms will be denied. Scheduled and periodic scaling actions are not restricted.
 
 Before an instance is added to the AS group, it requires 2 to 3 minutes to execute the configuration script to install and configure applications. The time varies depending on many factors, such as the instance specifications and startup scripts. Therefore, if an instance is put into use without cooldown after started, the system will continuously increase instances until the load decreases. After the new instances take over services, the system detects that the load is too low and decreases instances in the AS group. A cooldown prevents the AS group from repeatedly triggering unnecessary scaling actions.
@@ -98,7 +98,7 @@ Before an instance is added to the AS group, it requires 2 to 3 minutes to execu
 When a traffic peak occurs, an alarm policy is triggered. In this case, AS automatically adds an instance to the AS group to help handle the added demands. However, it takes several minutes for the instance to start. After the instance is started, it takes a certain period of time to receive requests from ELB. During this period, alarms may be triggered continuously. As a result, an instance is added each time an alarm is triggered. If you set a cooldown time, after an instance is started, AS stops adding new instances according to the alarm policy until the specified period of time (300 seconds by default) passes. Therefore, the newly started instance has time to start processing application traffic. If an alarm is triggered again after the cooldown period elapses, AS starts another instance and the cooldown period takes effect again.
 
 
-### Configuring an Instance Removal Policy
+###### Configuring an Instance Removal Policy
 When instances are automatically removed from your AS group, the instances that are not in the currently used AZs will be removed first. Besides, AS will check whether instances are evenly distributed in the currently used AZs. If the number of instances in an AZ is greater than that in other AZs, AS attempts to balance load between AZs when removing instances. If the load between AZs is balanced, AS removes instances following the pre-configured instance removal policy.
 
 AS supports the following instance removal policies:
@@ -125,7 +125,7 @@ AS supports the following instance removal policies:
 3. stop the ECS instance, and make a private image from this ECS instance. In this example, I made a private image named ecs-demo-img.
  
 ## Auto Scaling Demo
-1. ### Create **AS Group**:
+1. ##### Create **AS Group**:
 
 An *AS group* consists of a collection of ECS instances and *AS policies* that have similar attributes and apply to the same application scenario. An AS group is the basis for enabling or disabling AS policies and performing scaling actions. The pre-configured AS policy automatically adds or deletes instances to or from an AS group, or maintains a fixed number of instances in an AS group.
 
@@ -145,7 +145,7 @@ So let's create our configuration before finish our AS Group configuration.
 
 - **Tip:** I recommend you to disable your **AS Group** and go all the way down to finish all configuration needed and just enable it when it is really necessary, otherwise it will create ECS instances and you will start paying for resources you are not using right a way.
 
-2. ### Create **AS Configuration**:
+2. ##### Create **AS Configuration**:
 
 An AS configuration specifies the specifications of the ECSs to be added to an **AS group**.
 The most important thing is to choose the Image which is the private image you created.
@@ -158,7 +158,7 @@ If everything is correct, click **Create Now**.
  
 After successful creation, you can see the newly created AS Configuration in the list and now need to go back to your **AS Group creation** to finish the creation of the AS Group with the selected AS Configuration.
  
-3. ### Add Policy:
+3. ##### Add Policy:
 
 A scaling policy specifies the conditions for triggering a scaling action as well as the triggered operation. If the conditions are met, a scaling action is triggered to perform the required operation.
 
@@ -198,13 +198,13 @@ You can see the configuration of my two policies below:
 
 - **NOTE:** In this example I used CPU Usage as a trigger, you can created other alarm/schedule/periodic to trigger scaling action.
 
-4. ### AS Group Summary
+4. ##### AS Group Summary
 Go back to AS Group you can see as-group-demo is related to as-config-demo.
 ![AS Group Summary](/images/as-group-summary.jpg)
 
 The current status of AS Group as-group-demo is **Disabled**, please click **Enable** in the Operation column to enable it. Make sure your expected and minimum ECS are set to **0**
 
-5. ### AS Group Instance
+5. ##### AS Group Instance
 Click AS Group name as-group-demo, you will se an overview of your Autoscaling configuration, click **Modify** and change configuration to add 1 or more ECS to your AS. In my example I added two ECS and changed cooldown period to 100 (If you have doubt about how to set cooldown period, go to [Cooldown Period section](#cooldown-period))
 ![Expected , Minimum & Cooldown](/images/expected-minimum02.jpg)
 
@@ -212,18 +212,18 @@ You can see an instances is in Initializing status.
  
 Wait for some moments, the instance status will be Normal. 
  
-6. ### ELB Backend ECS Instance - fresh
+6. ##### ELB Backend ECS Instance - fresh
 Check the ELB instance elb-demo and choose Backend ECS tab, you can see an ECS instance is registered to it. If you see the Health Check is Abnormal, do not worry, wait for some minutes. Eventually the backend ECS instance’s Health Check will be Normal.
  
-7. ### Access Web Application
+7. ##### Access Web Application
 Now, it’s time to access the web application. Open a web browser and input: http://<ELB Service IP address>/
 
 **NOTE:** Please use the correct ELB Service IP address in your environment. For this example, the url is: http://www.hwcping.com.br . If there is nothing wrong, you will see the following web page. Check the IP Address it printed if the same as your ECS instance private IP address.
  
-8. ### Make sure CPU high policy is enabled
+8. ##### Make sure CPU high policy is enabled
 Now, go to AS Group -> Policy to make sure the polices created are Enabled. If not, please enable them.
  
-9. ### Spike's CPU
+9. ##### Spike's CPU
 If you follow me util here, **Congratulations!** 
 
 Now it’s time to show how auto scaling really works.
@@ -239,19 +239,13 @@ Then monitor its CPU Usage. If it is under 80%, then increase the parameters opt
  
 Now, wait for some time (at least 5 minutes which is the default monitor interval), you can see a new instance is initializing. Wait for some minutes, the Health Status will be Normal.
  
-10. ### ELB Backend ECS Instances - newly
+10. ##### ELB Backend ECS Instances - newly
 Go to ELB elb-demo and choose Backend ECS, you will see the newly created ECS instance is registered to the ELB. If the “Health Check” status is not Normal, wait for some minutes.
  
-12. ### Access Web Application after Scaling
+11. ##### Access Web Application after Scaling
 Now, it’s time to check auto scaling result. Open a web browser and input: http://<ELB Service IP address>, mark the checkbox to auto refresh, you will see the IP Address changes each time when refresh.
  
-13. ### AS Group CPU Low Reduce 1 Instance
+12. ##### AS Group CPU Low Reduce 1 Instance
 Wait or kill your stress tool execution (run for 15 minutes). After the tool stop running, wait for some time (at least 5 minutes which is the default monitor interval), you will see the ECS instances in AS Group as-group-demo reduce 1 and there is only 2 instances(expected instance number is 2) running in the AS Group.
  
 When CPU usage is below 35% for some time (Monitoring Interval * Consecutive Occurrences), AS Group will reduce 1 instance.
-
-
-4. Resumo:
-
-
-
