@@ -201,57 +201,57 @@ You can see the configuration of my two policies below:
 4. ### AS Group Summary
 Go back to AS Group you can see as-group-demo is related to as-config-demo.
 ![AS Group Summary](/images/as-group-summary.jpg)
+
+The current status of AS Group as-group-demo is **Disabled**, please click **Enable** in the Operation column to enable it. Make sure your expected and minimum ECS are set to **0**
+
+5. ### AS Group Instance
+Click AS Group name as-group-demo, you will se an overview of your Autoscaling configuration, click **Modify** and change configuration to add 1 or more ECS to your AS. In my example I added two ECS and changed cooldown period to 100 (If you have doubt about how to set cooldown period, go to [Cooldown Period section](#cooldown-period))
+![Expected , Minimum & Cooldown](/images/expected-minimum02.jpg)
+
+You can see an instances is in Initializing status.
  
-5. ### Enable AS Group
-The current status of AS Group as-group-demo is **Disabled**, please click Enable in the Operation column to enable it. Make sure your expected and minimum ECS are set to **0**
-![Expected & Minimum ECS](/images/expected-minimum.jpg)
+Wait for some moments, the instance status will be Normal. 
  
-7. ### AS Group Instance
-Click AS Group name as-group-demo, choose Instance tab, you can see an instance is in Initializing status.
+6. ### ELB Backend ECS Instance - fresh
+Check the ELB instance elb-demo and choose Backend ECS tab, you can see an ECS instance is registered to it. If you see the Health Check is Abnormal, do not worry, wait for some minutes. Eventually the backend ECS instance’s Health Check will be Normal.
  
-Wait for some minutes, the instance status will be Normal.
+7. ### Access Web Application
+Now, it’s time to access the web application. Open a web browser and input: http://<ELB Service IP address>/
+
+**NOTE:** Please use the correct ELB Service IP address in your environment. For this example, the url is: http://www.hwcping.com.br . If there is nothing wrong, you will see the following web page. Check the IP Address it printed if the same as your ECS instance private IP address.
  
-8. ### ELB Backend ECS Instance
-Check the ELB instance elb-demo and choose Backend ECS tab, you can see an ECS instance is registered to it. If you see the Health Check is Abnormal, do not worry, wait for some minutes.
+8. ### Make sure CPU high policy is enabled
+Now, go to AS Group -> Policy to make sure the polices created are Enabled. If not, please enable them.
  
-Eventually the backend ECS instance’s Health Check will be Normal.
+9. ### Spike's CPU
+If you follow me util here, **Congratulations!** 
+
+Now it’s time to show how auto scaling really works.
+
+First, login to one of your ECS instance, and put some CPU load to it. 
+(I used **stress** tool, but you can use your own prefered tool)
+On your ECS terminal, run the command below:
+```
+stress --cpu 8 --io 3 --vm 2 --vm-bytes 256M --timeout 15m
+```
+
+Then monitor its CPU Usage. If it is under 80%, then increase the parameters option.
  
-Check ELB basic information, especially the Service IP address, it will be used to access the web application. In this example, it is 200.229.193.104.
+Now, wait for some time (at least 5 minutes which is the default monitor interval), you can see a new instance is initializing. Wait for some minutes, the Health Status will be Normal.
  
-9. ### Access Web Application
-Now, it’s time to access the web application. Open a web browser and input: http://<ELB Service IP address>:8080/as-demo.
-NOTE: Please use the correct ELB Service IP address in your environment. For this example, the url is: http://100.100.100.100:8080/as-demo
-If there is nothing wrong, you will see the following web page. Check the IP Address it printed if the same as your ECS instance private IP address.
- 
-10. ### Make sure CPU high policy is enabled
-Now, go to AS Group->Policy to make sure the polices created are Enabled. If not, please enable them.
- 
-11. ### Kill CPU
-Congratulations! Now it’s time to show how auto scaling works.
-First, login to your ECS instance, and put some CPU load to it. I used the following:
-stress -c $[$(grep "processor" /proc/cpuinfo | wc -l) * 8] -i 4 --verbose --timeout 15m
-Then monitor its CPU Usage. If it is under 80%, then increase the parameter for -i option.
- 
-Or you can got to AS Group->Monitoring to monitor CPU usage, Memory Usage, Network Traffic etc.
- 
-Wait for some time (at least 5 minutes), you can see a new instance is initializing.
- 
-Wait for some minutes, the Health Status will be Normal.
- 
-12. ### ELB Backend ECS Instances
+10. ### ELB Backend ECS Instances - newly
 Go to ELB elb-demo and choose Backend ECS, you will see the newly created ECS instance is registered to the ELB. If the “Health Check” status is not Normal, wait for some minutes.
  
-13. ### Access Web Application after Scaling
-Now, it’s time to check auto scaling result. Open a web browser and input: http://<ELB Service IP address>:8080/as-demo, refresh the page for several times, you will see the IP Address changes each time when you refresh.
-NOTE: Please use the correct ELB Service IP address in your environment. For this example, the url is: http://200.229.193.104:8080/as-demo
+12. ### Access Web Application after Scaling
+Now, it’s time to check auto scaling result. Open a web browser and input: http://<ELB Service IP address>, mark the checkbox to auto refresh, you will see the IP Address changes each time when refresh.
  
-Refresh the page:
+13. ### AS Group CPU Low Reduce 1 Instance
+Wait or kill your stress tool execution (run for 15 minutes). After the tool stop running, wait for some time (at least 5 minutes which is the default monitor interval), you will see the ECS instances in AS Group as-group-demo reduce 1 and there is only 2 instances(expected instance number is 2) running in the AS Group.
  
-14. ### AS Group CPU Low Reduce 1 Instance
-The kill_cpu.sh will run for 15 minutes. After the script stop running, wait for some time (5 minutes), you will see the ECS instances in AS Group as-group-demo reduce 1 and there is only 1 instances(expected instance number is 1) running in the AS Group.
- 
-When CPU usage is below 35% for some time (Monitoring Interval * Consecutive Occurrences), AS Group will reduce 1 instance: 
+When CPU usage is below 35% for some time (Monitoring Interval * Consecutive Occurrences), AS Group will reduce 1 instance.
 
 
 4. Resumo:
+
+
 
