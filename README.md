@@ -216,7 +216,7 @@ Wait for some moments, the instance status will be Normal.
 Check the ELB instance elb-demo and choose Backend ECS tab, you can see an ECS instance is registered to it. If you see the Health Check is Abnormal, do not worry, wait for some minutes. Eventually the backend ECS instance’s Health Check will be Normal.
  
 7. ### Access Web Application
-Now, it’s time to access the web application. Open a web browser and input: http://<ELB Service IP address>/
+Now, it’s time to access the web application. Open a web browser and input: http://www.hwcping.com.br
 
 **NOTE:** Please use the correct ELB Service IP address in your environment. For this example, the url is: http://www.hwcping.com.br . If there is nothing wrong, you will see the following web page. Check the IP Address it printed if the same as your ECS instance private IP address.
  
@@ -243,7 +243,7 @@ Now, wait for some time (at least 5 minutes which is the default monitor interva
 Go to ELB elb-demo and choose Backend ECS, you will see the newly created ECS instance is registered to the ELB. If the “Health Check” status is not Normal, wait for some minutes.
  
 11. ### Access Web Application after Scaling
-Now, it’s time to check auto scaling result. Open a web browser and input: http://<ELB Service IP address>, mark the checkbox to auto refresh, you will see the IP Address changes each time when refresh.
+Now, it’s time to check auto scaling result. Open a web browser and input: http://www.hwcping.com.br, mark the checkbox to auto refresh, you will see the IP Address changes each time when refresh.
  
 12. ### AS Group CPU Low Reduce 1 Instance
 Wait or kill your stress tool execution (run for 15 minutes). After the tool stop running, wait for some time (at least 5 minutes which is the default monitor interval), you will see the ECS instances in AS Group as-group-demo reduce 1 and there is only 2 instances(expected instance number is 2) running in the AS Group.
