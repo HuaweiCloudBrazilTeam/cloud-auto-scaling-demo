@@ -120,11 +120,9 @@ AS supports the following instance removal policies:
 
 - **NOTE:** In this example, I used Ubuntu 18.04. However, it is not a mandatory, you can use your own Operating Sytem and application server version.
 
-2. Bind an [EIP](https://support.huaweicloud.com/intl/en-us/eip/index.html) to your ECS instance and try to access your web server. If you can see a web page with Auto Scaling Demo displayed and your IP address, congratulations, your web application is successfylly deployed.
+2. Bind an [EIP](https://support.huaweicloud.com/intl/en-us/eip/index.html) to your ECS instance and try to access your web server. If you can see a web page with Auto Scaling Demo displayed and your IP address, congratulations, your web application is successfully deployed.
 
-3. create a directory *scripts* under /home/linux and paste the scripts files under /home/linux/scripts
-
-4. stop the ECS instance, and make a private image from this ECS instance. In this example, I made a private image named ecs-demo-img.
+3. stop the ECS instance, and make a private image from this ECS instance. In this example, I made a private image named ecs-demo-img.
  
 ## Auto Scaling Demo
 1. ### Create **AS Group**:
@@ -200,15 +198,13 @@ You can see the configuration of my two policies below:
 
 - **NOTE:** In this example I used CPU Usage as a trigger, you can created other alarm/schedule/periodic to trigger scaling action.
 
-
-
- 
 4. ### AS Group Summary
 Go back to AS Group you can see as-group-demo is related to as-config-demo.
 ![AS Group Summary](/images/as-group-summary.jpg)
  
-6. ### Enable AS Group
-The current status of AS Group as-group-demo is Disabled, please click Enable in the Operation column to enable it.
+5. ### Enable AS Group
+The current status of AS Group as-group-demo is **Disabled**, please click Enable in the Operation column to enable it. Make sure your expected and minimum ECS are set to **0**
+![Expected & Minimum ECS](/images/expect-minimum.jpg)
  
 7. ### AS Group Instance
 Click AS Group name as-group-demo, choose Instance tab, you can see an instance is in Initializing status.
