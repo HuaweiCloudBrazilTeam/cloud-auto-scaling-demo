@@ -131,7 +131,7 @@ day, one week, or month.
 
 - Scheduled: AS automatically increases or decreases the number of ECS instances in an
 AS group or sets the number of ECS instances to a specified value at a specified time
-![Add AS Policy Schedule](/images/add-as-policy-Schedule.jpg)
+![Add AS Policy Schedule](/images/add-as-policy-schedule.jpg)
 
 
 To create an **AS Policy** you need to go to **AS Group Configuration** detailed page (picture below)
