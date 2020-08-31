@@ -10,7 +10,7 @@ Abstract：Auto Scaling (AS) is a somewhat cool feature which is almost the stan
 
 - [Lifecycle](#lifecycle)
 
-- [Web Application](#web-application)
+- [Demo Web Application](#demo-web-application)
 
 - [Auto Scaling Demo](#auto-scaling-demo)
 
@@ -114,7 +114,7 @@ AS supports the following instance removal policies:
 - **NOTE:** A manually added ECS is removed in the lowest priority. AS does not delete a manually added ECS when removing it. If multiple manually added ECSs must be removed, AS preferentially removes the earliest-added ECS.
 
 
-## Web Application
+## Demo Web Application
 
 1. Please refer to [Web app guide](webapp.md) to install nginx and deploy *as-demo app* on your Ubuntu ECS instance.
 
