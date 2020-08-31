@@ -2,7 +2,8 @@
 1. - [ ] Create script to automate as-demo application setup & deployment
 
 2. - [ ] Create RTS script to automate Huawei Cloud Autoscaling environment:
-- Create VPC and Subnet
+Taks | Status |
+Create VPC and Subnet | | [ ]
 - Create ELB & Listener
 - Create AS Configuration
 - Create AS Group and add AS Configuration to it
