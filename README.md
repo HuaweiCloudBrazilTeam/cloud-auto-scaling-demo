@@ -206,6 +206,7 @@ The current status of AS Group as-group-demo is **Disabled**, please click **Ena
 
 5. ### AS Group Instance
 Click AS Group name as-group-demo, you will se an overview of your Autoscaling configuration, click *Modify* and change configuration to add 1 or more ECS to your AS. In my example I added two ECS and changed cooldown period to 100 (If you have doubt about how to set cooldown period, go to [Cooldown Period section](#cooldown-period))
+
 ![Expected , Minimum & Cooldown](/images/expected-minimum02.jpg)
 
 You can see an instances is in Initializing status.
