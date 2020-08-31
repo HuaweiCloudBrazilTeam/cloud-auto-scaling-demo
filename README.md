@@ -12,6 +12,8 @@ Abstract：Auto Scaling (AS) is a somewhat cool feature which is almost the stan
 
 - [Auto Scaling Demo](#auto-scaling-demo)
 
+![main picture](/images/main.jpg)
+
 ## Description
 In this auto scaling demo, I did the following:
 
@@ -70,6 +72,48 @@ We assume you have created your own resources, the resources created below on Hu
     ![ECS](/images/ecs-demo.jpg)
 
 
+## Lifecycle
+The lifecycle of an instance in an AS group starts when it is created and ends when it is removed from the AS group.
+
+If you have not added a lifecycle hook to the AS group, the instance lifecycle changes as shown in figure below.
+![lifecycle](/images/lifecycle.jpg)
+
+In trigger conditions 2 and 4, a scaling action is automatically triggered to change the instance status.
+
+More details about scaling actions and triggers can be shown in the table below:
+![lifecycle](/images/lifecycle-table.jpg)
+
+### Consecutive Occurrences
+- Set the number of consecutive times the threshold must be exceeded for the alarm to be generated. If Occurrences is set to 3, the alarm will be generated after the threshold is exceeded for the third consecutive time.
+
+### Cooldown Period
+- The cooldown period starts after each scaling action is complete. During the cooldown period, scaling actions triggered by alarms will be denied. Scheduled and periodic scaling actions are not restricted.
+
+Before an instance is added to the AS group, it requires 2 to 3 minutes to execute the configuration script to install and configure applications. The time varies depending on many factors, such as the instance specifications and startup scripts. Therefore, if an instance is put into use without cooldown after started, the system will continuously increase instances until the load decreases. After the new instances take over services, the system detects that the load is too low and decreases instances in the AS group. A cooldown prevents the AS group from repeatedly triggering unnecessary scaling actions.
+
+The following uses an example to introduce the cooling principles:
+
+When a traffic peak occurs, an alarm policy is triggered. In this case, AS automatically adds an instance to the AS group to help handle the added demands. However, it takes several minutes for the instance to start. After the instance is started, it takes a certain period of time to receive requests from ELB. During this period, alarms may be triggered continuously. As a result, an instance is added each time an alarm is triggered. If you set a cooldown time, after an instance is started, AS stops adding new instances according to the alarm policy until the specified period of time (300 seconds by default) passes. Therefore, the newly started instance has time to start processing application traffic. If an alarm is triggered again after the cooldown period elapses, AS starts another instance and the cooldown period takes effect again.
+
+### Configuring an Instance Removal Policy
+When instances are automatically removed from your AS group, the instances that are not in the currently used AZs will be removed first. Besides, AS will check whether instances are evenly distributed in the currently used AZs. If the number of instances in an AZ is greater than that in other AZs, AS attempts to balance load between AZs when removing instances. If the load between AZs is balanced, AS removes instances following the pre-configured instance removal policy.
+
+AS supports the following instance removal policies:
+
+- **Oldest instance:** The oldest instance is removed from the AS group first. Use this policy if you want to replace old instances by new instances in an AS group.
+
+- **Newest instance:** The latest instance is removed from the AS group first. Use this policy if you want to test a new AS configuration and do not want to retain it.
+
+- **Oldest instance created from oldest AS configuration:** The oldest instance created based on the oldest configuration is removed from the AS group first. Use this policy if you want to update an AS group and delete the instances created based on early AS configurations gradually.
+
+- **Newest instance created from oldest AS configuration:** The latest instance created based on the oldest configuration is removed from the AS group first.
+
+```
+- **NOTE:**
+A manually added ECS is removed in the lowest priority. AS does not delete a manually added ECS when removing it. If multiple manually added ECSs must be removed, AS preferentially removes the earliest-added ECS.
+
+```
+
 ## Web Application
 
 1. Please refer to [Web app guide](webapp.md) to install nginx and deploy *as-demo app* on your Ubuntu ECS instance.
@@ -101,6 +145,8 @@ As you can see in the pictures above it is mandatory to create an "**AS Configur
 ![AS Configuration](/images/as-configuration-mandatory.jpg)
 So let's create our configuration before finish our AS Group configuration.
 
+- **Tip:** I recommend you to disable your **AS Group** and go all the way down to finish all configuration needed and just enable it when it is really necessary, otherwise it will create ECS instances and you will start paying for resources you are not using right a way.
+
 2. ### Create **AS Configuration**:
 
 An AS configuration specifies the specifications of the ECSs to be added to an **AS group**.
@@ -120,16 +166,16 @@ A scaling policy specifies the conditions for triggering a scaling action as wel
 
 A policy can be of Alarm, Scheduled, or Periodic type.
 
-- Alarm: AS automatically increases or decreases the number of ECS instances in an AS
+- **Alarm:** AS automatically increases or decreases the number of ECS instances in an AS
 group or sets the number of ECS instances to a specified value if Cloud Eye (CES)
 generates an alarm for a configured metric, such as CPU usage.
 ![Add AS Policy Alarm](/images/add-as-policy-alarm.jpg)
 
-- Periodic: AS increases or decreases the number of ECS instances in an AS group or sets the number of ECS instances to a specified value at a configured interval, such as one
+- **Periodic:** AS increases or decreases the number of ECS instances in an AS group or sets the number of ECS instances to a specified value at a configured interval, such as one
 day, one week, or month.
 ![Add AS Policy Periodic](/images/add-as-policy-periodic.jpg)
 
-- Scheduled: AS automatically increases or decreases the number of ECS instances in an
+- **Scheduled:** AS automatically increases or decreases the number of ECS instances in an
 AS group or sets the number of ECS instances to a specified value at a specified time
 ![Add AS Policy Schedule](/images/add-as-policy-schedule.jpg)
 
@@ -138,10 +184,9 @@ To create an **AS Policy** you need to go to **AS Group Configuration** detailed
 ![Add AS Policy](/images/as-group-details.jpg)
 
 And then select **AS Policies** tab and click **Add AS Policy**
-
 ![Add AS Policy](/images/as-policy-demo.jpg)
 
-In my example I will create two policies to simulate an increase of load and add instances to serve my application or decrease load.
+In my example, I will create two policies to simulate an increase of load and add instances to serve my application or decrease load.
 You can see the configuration of my two policies below:
 
 - Policy **as-policy-demo-up** tells the AS Group: If the average CPU Usage of AS Group is higher or equal 80%, then add 1 instance
@@ -153,16 +198,14 @@ You can see the configuration of my two policies below:
 ![Add AS Policy](/images/as-policy-demo-down.jpg)
 
 
-The following policies are created.
-- **NOTE:** In this example I used CPU Usage, you can created other alarm to trigger scaling action.
+- **NOTE:** In this example I used CPU Usage as a trigger, you can created other alarm/schedule/periodic to trigger scaling action.
+
+
+
  
-4. ### Modify Configuration of AS Group
-Now the Configuration Name is empty for the AS Group, please click Modify next to Configuration Name and choose the AS Configuration as-config-demo to relate it to AS Group as-group-demo.
- 
-AS Group basic information:
- 
-5. ### AS Group Summary
+4. ### AS Group Summary
 Go back to AS Group you can see as-group-demo is related to as-config-demo.
+![AS Group Summary](/images/as-group-summary.jpg)
  
 6. ### Enable AS Group
 The current status of AS Group as-group-demo is Disabled, please click Enable in the Operation column to enable it.
