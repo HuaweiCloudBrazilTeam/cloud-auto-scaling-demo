@@ -100,13 +100,17 @@ As you can see in the pictures above it is mandatory to create an "**AS Configur
 ![AS Configuration](/images/as-configuration-mandatory.jpg)
 So let's create our configuration before finish our AS Group configuration.
 
-2. Create AS Configuration
-An AS configuration specifies the specifications of the ECSs to be added to an AS group.
+2. Create **AS Configuration**
+an AS configuration specifies the specifications of the ECSs to be added to an **AS group**.
 The most important thing is to choose the Image which is the private image you created.
+![AS Configuration](/images/my-config-01.jpg)
+![AS Configuration](/images/my-config-02.jpg)
+![AS Configuration](/images/my-config-03.jpg)
+![AS Configuration](/images/my-config-04.jpg)
+
+If everything is correct, click **Create Now**.
  
-Create AS Group Configuration Summary. If everything is correct, click Submit.
- 
-After successful creation, you can see the newly created AS Configuration in the list.
+After successful creation, you can see the newly created AS Configuration in the list and now need to go back to you **AS Group creation** to finish the creation of the AS Group with the selected AS Configuration.
  
 3. Add Policy
 A scaling policy specifies the conditions for triggering a scaling action as well as the triggered operation. If the conditions are met, a scaling action is triggered to perform the required operation.
