@@ -204,7 +204,7 @@ Go back to AS Group you can see as-group-demo is related to as-config-demo.
  
 5. ### Enable AS Group
 The current status of AS Group as-group-demo is **Disabled**, please click Enable in the Operation column to enable it. Make sure your expected and minimum ECS are set to **0**
-![Expected & Minimum ECS](/images/expect-minimum.jpg)
+![Expected & Minimum ECS](/images/expected-minimum.jpg)
  
 7. ### AS Group Instance
 Click AS Group name as-group-demo, choose Instance tab, you can see an instance is in Initializing status.
