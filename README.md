@@ -123,12 +123,16 @@ A policy can be of Alarm, Scheduled, or Periodic type.
 - Alarm: AS automatically increases or decreases the number of ECS instances in an AS
 group or sets the number of ECS instances to a specified value if Cloud Eye (CES)
 generates an alarm for a configured metric, such as CPU usage.
+![Add AS Policy Alarm](/images/add-as-policy-alarm.jpg)
 
 - Periodic: AS increases or decreases the number of ECS instances in an AS group or sets the number of ECS instances to a specified value at a configured interval, such as one
 day, one week, or month.
+![Add AS Policy Periodic](/images/add-as-policy-periodic.jpg)
 
 - Scheduled: AS automatically increases or decreases the number of ECS instances in an
 AS group or sets the number of ECS instances to a specified value at a specified time
+![Add AS Policy Schedule](/images/add-as-policy-Schedule.jpg)
+
 
 To create an **AS Policy** you need to go to **AS Group Configuration** detailed page (picture below)
 ![Add AS Policy](/images/as-group-details.jpg)
@@ -140,11 +144,11 @@ And then select **AS Policies** tab and click **Add AS Policy**
 In my example I will create two policies to simulate an increase of load and add instances to serve my application or decrease load.
 You can see the configuration of my two policies below:
 
-- Policy **as-policy-cpu-high** tells the AS Group: If the average CPU Usage of AS Group is higher or equal 80%, then add 1 instance
+- Policy **as-policy-demo-up** tells the AS Group: If the average CPU Usage of AS Group is higher or equal 80%, then add 1 instance
 
 ![Add AS Policy](/images/as-policy-demo-up.jpg)
  
-- Policy **as-policy-cpu-low** tells the AS Group: If the average CPU Usage of AS Group is lower or equal 30%, then reduce 1 instance
+- Policy **as-policy-demo-down** tells the AS Group: If the average CPU Usage of AS Group is lower or equal 30%, then reduce 1 instance
 
 ![Add AS Policy](/images/as-policy-demo-down.jpg)
 
