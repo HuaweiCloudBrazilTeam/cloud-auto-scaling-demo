@@ -83,7 +83,7 @@ We assume you have created your own resources, the resources created below on Hu
 4. stop the ECS instance, and make a private image from this ECS instance. In this example, I made a private image named ecs-demo-img.
  
 ## Auto Scaling Demo
-1. Create **AS Group**:
+1. ### Create **AS Group**:
 
 An *AS group* consists of a collection of ECS instances and *AS policies* that have similar attributes and apply to the same application scenario. An AS group is the basis for enabling or disabling AS policies and performing scaling actions. The pre-configured AS policy automatically adds or deletes instances to or from an AS group, or maintains a fixed number of instances in an AS group.
 
@@ -101,7 +101,7 @@ As you can see in the pictures above it is mandatory to create an "**AS Configur
 ![AS Configuration](/images/as-configuration-mandatory.jpg)
 So let's create our configuration before finish our AS Group configuration.
 
-2. Create **AS Configuration**:
+2. ### Create **AS Configuration**:
 
 An AS configuration specifies the specifications of the ECSs to be added to an **AS group**.
 The most important thing is to choose the Image which is the private image you created.
@@ -112,9 +112,9 @@ The most important thing is to choose the Image which is the private image you c
 
 If everything is correct, click **Create Now**.
  
-After successful creation, you can see the newly created AS Configuration in the list and now need to go back to you **AS Group creation** to finish the creation of the AS Group with the selected AS Configuration.
+After successful creation, you can see the newly created AS Configuration in the list and now need to go back to your **AS Group creation** to finish the creation of the AS Group with the selected AS Configuration.
  
-3. Add Policy:
+3. ### Add Policy:
 
 A scaling policy specifies the conditions for triggering a scaling action as well as the triggered operation. If the conditions are met, a scaling action is triggered to perform the required operation.
 
@@ -139,48 +139,48 @@ And then select **AS Policies** tab
 
 Policy **as-policy-cpu-high** tells the AS Group: If the average CPU Usage of AS Group is higher or equal 80%, then add 1 instance
 
-![Add AS Policy](/images/my-config-04.jpg)
+![Add AS Policy](/images/as-policy-demo-up.jpg)
  
 Policy **as-policy-cpu-low** tells the AS Group: If the average CPU Usage of AS Group is lower or equal 30%, then reduce 1 instance
 
-![Add AS Policy](/images/my-config-04.jpg)
+![Add AS Policy](/images/as-policy-demo-down.jpg)
 
 
 The following policies are created.
 - **NOTE:** In this example I used CPU Usage, you can created other alarm to trigger scaling action.
  
-4. Modify Configuration of AS Group
+4. ### Modify Configuration of AS Group
 Now the Configuration Name is empty for the AS Group, please click Modify next to Configuration Name and choose the AS Configuration as-config-demo to relate it to AS Group as-group-demo.
  
 AS Group basic information:
  
-5. AS Group Summary
+5. ### AS Group Summary
 Go back to AS Group you can see as-group-demo is related to as-config-demo.
  
-6. Enable AS Group
+6. ### Enable AS Group
 The current status of AS Group as-group-demo is Disabled, please click Enable in the Operation column to enable it.
  
-7. AS Group Instance
+7. ### AS Group Instance
 Click AS Group name as-group-demo, choose Instance tab, you can see an instance is in Initializing status.
  
 Wait for some minutes, the instance status will be Normal.
  
-8. ELB Backend ECS Instance
+8. ### ELB Backend ECS Instance
 Check the ELB instance elb-demo and choose Backend ECS tab, you can see an ECS instance is registered to it. If you see the Health Check is Abnormal, do not worry, wait for some minutes.
  
 Eventually the backend ECS instance’s Health Check will be Normal.
  
 Check ELB basic information, especially the Service IP address, it will be used to access the web application. In this example, it is 200.229.193.104.
  
-9. Access Web Application
+9. ### Access Web Application
 Now, it’s time to access the web application. Open a web browser and input: http://<ELB Service IP address>:8080/as-demo.
 NOTE: Please use the correct ELB Service IP address in your environment. For this example, the url is: http://100.100.100.100:8080/as-demo
 If there is nothing wrong, you will see the following web page. Check the IP Address it printed if the same as your ECS instance private IP address.
  
-10. Make sure CPU high policy is enabled
+10. ### Make sure CPU high policy is enabled
 Now, go to AS Group->Policy to make sure the polices created are Enabled. If not, please enable them.
  
-11. Kill CPU
+11. ### Kill CPU
 Congratulations! Now it’s time to show how auto scaling works.
 First, login to your ECS instance, and put some CPU load to it. I used the following:
 stress -c $[$(grep "processor" /proc/cpuinfo | wc -l) * 8] -i 4 --verbose --timeout 15m
@@ -192,16 +192,20 @@ Wait for some time (at least 5 minutes), you can see a new instance is initializ
  
 Wait for some minutes, the Health Status will be Normal.
  
-12. ELB Backend ECS Instances
+12. ### ELB Backend ECS Instances
 Go to ELB elb-demo and choose Backend ECS, you will see the newly created ECS instance is registered to the ELB. If the “Health Check” status is not Normal, wait for some minutes.
  
-13. Access Web Application after Scaling
+13. ### Access Web Application after Scaling
 Now, it’s time to check auto scaling result. Open a web browser and input: http://<ELB Service IP address>:8080/as-demo, refresh the page for several times, you will see the IP Address changes each time when you refresh.
 NOTE: Please use the correct ELB Service IP address in your environment. For this example, the url is: http://200.229.193.104:8080/as-demo
  
 Refresh the page:
  
-14. AS Group CPU Low Reduce 1 Instance
+14. ### AS Group CPU Low Reduce 1 Instance
 The kill_cpu.sh will run for 15 minutes. After the script stop running, wait for some time (5 minutes), you will see the ECS instances in AS Group as-group-demo reduce 1 and there is only 1 instances(expected instance number is 1) running in the AS Group.
  
 When CPU usage is below 35% for some time (Monitoring Interval * Consecutive Occurrences), AS Group will reduce 1 instance: 
+
+
+4. Resumo:
+
