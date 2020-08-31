@@ -234,6 +234,7 @@ On your ECS terminal, run the command below:
 ```
 stress --cpu 8 --io 3 --vm 2 --vm-bytes 256M --timeout 15m
 ```
+Repeat the same task above to the other ECS
 
 Then monitor its CPU Usage. If it is under 80%, then increase the parameters option.
  
