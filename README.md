@@ -26,8 +26,8 @@ In this auto scaling demo, I did the following:
 - Create an **ELB instance** and a listener on it. AS service will cooperate with the ELB to register a newly created ECS instance to it, and de-register a removed ECS instance from it
 
 - Create an **auto scaling group** with 2 alarm policies set:
-    - *as-policy-cpu-high:* If average CPU usage >= 80%, then add 1 instance
-    - *as-policy-cpu-low:* If average CPU usage <= 35%, then reduce 1 instance
+    - *as-policy-cpu-high:* If average CPU usage Max. > 80%, then add 1 instance
+    - *as-policy-cpu-low:* If average CPU usage Max. < 35%, then reduce 1 instance
 
 The auto scaling demo is a very comprehensive example, since it relates to the following services:
 
