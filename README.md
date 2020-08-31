@@ -85,7 +85,7 @@ We assume you have created your own resources, the resources created below on Hu
 ## Auto Scaling Demo
 1. Create **AS Group**:
 
-An *AS group* consists of a collection of ECS instances and *AS policies* that have similar attributes and apply to the same application scenario. An AS group is the basis for enabling or disabling AS policies and performing scaling actions. The pre-configured AS policy automatically adds or deletes instances to or from an AS group, or maintains a fixed number of instances in an AS group.
+- An *AS group* consists of a collection of ECS instances and *AS policies* that have similar attributes and apply to the same application scenario. An AS group is the basis for enabling or disabling AS policies and performing scaling actions. The pre-configured AS policy automatically adds or deletes instances to or from an AS group, or maintains a fixed number of instances in an AS group.
 
 Go to *Auto Scaling* and create an AS group. I used some information in *Prerequisites section*, please adjust the parameters according to your own environment.
 
@@ -103,7 +103,7 @@ So let's create our configuration before finish our AS Group configuration.
 
 2. Create **AS Configuration**:
 
-An AS configuration specifies the specifications of the ECSs to be added to an **AS group**.
+- An AS configuration specifies the specifications of the ECSs to be added to an **AS group**.
 The most important thing is to choose the Image which is the private image you created.
 ![AS Configuration](/images/my-config-01.jpg)
 ![AS Configuration](/images/my-config-02.jpg)
@@ -132,7 +132,9 @@ AS group or sets the number of ECS instances to a specified value at a specified
 
 To create an **AS Policy** you need to go to **AS Group Configuration** detailed page (picture below)
 ![Add AS Policy](/images/as-group-details.jpg)
+
 And then select **AS Policies** tab
+
 ![Add AS Policy](/images/as-policy-demo.jpg)
 
 Policy **as-policy-cpu-high** tells the AS Group: If the average CPU Usage of AS Group is higher or equal 80%, then add 1 instance
