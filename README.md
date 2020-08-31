@@ -101,7 +101,7 @@ When a traffic peak occurs, an alarm policy is triggered. In this case, AS autom
 #### Configuring an Instance Removal Policy
 When instances are automatically removed from your AS group, the instances that are not in the currently used AZs will be removed first. Besides, AS will check whether instances are evenly distributed in the currently used AZs. If the number of instances in an AZ is greater than that in other AZs, AS attempts to balance load between AZs when removing instances. If the load between AZs is balanced, AS removes instances following the pre-configured instance removal policy.
 
-AS supports the following instance removal policies:
+*AS supports the following instance removal policies:*
 
 - **Oldest instance:** The oldest instance is removed from the AS group first. Use this policy if you want to replace old instances by new instances in an AS group.
 
