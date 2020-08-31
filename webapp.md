@@ -1,16 +1,17 @@
+# Install Webapp Demo
 ###############################
 
-Change *hwcping.com.br* to your onw domain name or deploy it to the default.
+- Change *hwcping.com.br* to your onw domain name or deploy it to the default.
 
 Ref.: https://docs.nginx.com/nginx/deployment-guides/setting-up-nginx-demo-environment/
 
 ###############################
 
-Install stress to simulate some load to the webserver
-
+## Install stress to simulate some load to the webserver
+ 
 1. apt install stress -y
 
-Install & Configuring Nginx:
+## Install & Configuring Nginx:
 
 1. apt install nginx -y
 2. mkdir -p /var/www/hwcping.com.br/html

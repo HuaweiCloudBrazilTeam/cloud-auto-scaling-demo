@@ -90,7 +90,11 @@ Go to *Auto Scaling* and create an AS group. I used some information in *Prerequ
 
 - **NOTE:** I choose *Use ELB* in this example, so all the ECS instances created will be added to ELB as backend ECS instances.
 
-<<Add Create AS Group Image>>
+![Create Autoscaling Group](/images/create-as-group-01.jpg)
+
+(/images/create-as-group-02.jpg)
+
+(/images/create-as-group-03.jpg)
  
 Create AS Group Summary. If everything is correct, click *Submit*.
 
