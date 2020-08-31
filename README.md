@@ -77,7 +77,7 @@ We assume you have created your own resources, the resources created below on Hu
 ## Lifecycle
 The lifecycle of an instance in an AS group starts when it is created and ends when it is removed from the AS group.
 
-If you have not added a lifecycle hook to the AS group, the instance lifecycle changes as shown in figure below.
+The instance lifecycle changes as shown in figure below.
 ![lifecycle](/images/lifecycle.jpg)
 
 In trigger conditions 2 and 4, a scaling action is automatically triggered to change the instance status.
@@ -95,7 +95,9 @@ Before an instance is added to the AS group, it requires 2 to 3 minutes to execu
 
 The following uses an example to introduce the cooling principles:
 
+```
 When a traffic peak occurs, an alarm policy is triggered. In this case, AS automatically adds an instance to the AS group to help handle the added demands. However, it takes several minutes for the instance to start. After the instance is started, it takes a certain period of time to receive requests from ELB. During this period, alarms may be triggered continuously. As a result, an instance is added each time an alarm is triggered. If you set a cooldown time, after an instance is started, AS stops adding new instances according to the alarm policy until the specified period of time (300 seconds by default) passes. Therefore, the newly started instance has time to start processing application traffic. If an alarm is triggered again after the cooldown period elapses, AS starts another instance and the cooldown period takes effect again.
+```
 
 ### Configuring an Instance Removal Policy
 When instances are automatically removed from your AS group, the instances that are not in the currently used AZs will be removed first. Besides, AS will check whether instances are evenly distributed in the currently used AZs. If the number of instances in an AZ is greater than that in other AZs, AS attempts to balance load between AZs when removing instances. If the load between AZs is balanced, AS removes instances following the pre-configured instance removal policy.
@@ -110,11 +112,8 @@ AS supports the following instance removal policies:
 
 - **Newest instance created from oldest AS configuration:** The latest instance created based on the oldest configuration is removed from the AS group first.
 
-```
-- **NOTE:**
-A manually added ECS is removed in the lowest priority. AS does not delete a manually added ECS when removing it. If multiple manually added ECSs must be removed, AS preferentially removes the earliest-added ECS.
+- **NOTE:** A manually added ECS is removed in the lowest priority. AS does not delete a manually added ECS when removing it. If multiple manually added ECSs must be removed, AS preferentially removes the earliest-added ECS.
 
-```
 
 ## Web Application
 
