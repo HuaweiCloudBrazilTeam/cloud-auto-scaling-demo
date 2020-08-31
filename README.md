@@ -96,13 +96,9 @@ Go to *Auto Scaling* and create an AS group. I used some information in *Prerequ
 
 ![Create Autoscaling Group](/images/create-as-group-03.jpg)
  
-Create AS Group Summary. If everything is correct, click *Submit*.
-
-<<Add Create AS Group Image>>
-
-After successful creation, you can see the newly created **AS Group** in the list, with status is *Disabled* and *Current Instances* is *0*.
-
-<<Add Create AS Group Image>>
+As you can see in the pictures above it is mandatory to create an "**AS Configuration**"
+![AS Configuration](/images/as-configuration-mandatory.jpg)
+So let's create our configuration before finish our AS Group configuration.
 
 2. Create AS Configuration
 An AS configuration specifies the specifications of the ECSs to be added to an AS group.
