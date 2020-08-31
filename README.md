@@ -8,6 +8,8 @@ Abstract：Auto Scaling (AS) is a somewhat cool feature which is almost the stan
 
 - [Prerequisites](#prerequisites)
 
+- [Lifecycle](#lifecycle)
+
 - [Web Application](#web-application)
 
 - [Auto Scaling Demo](#auto-scaling-demo)
