@@ -210,19 +210,35 @@ Click AS Group name as-group-demo, you will se an overview of your Autoscaling c
 ![Expected , Minimum & Cooldown](/images/expected-minimum02.jpg)
 
 You can see an instances is in Initializing status.
+![Initializing Status](/images/init-status.jpg)
+
+![Initializing Status](/images/init-status2.jpg)
  
-Wait for some moments, the instance status will be Normal. 
+Wait for some moments, the instance status will be Normal.
+![Initializing Status](/images/init-normal.jpg)
+
+![Initializing Status](/images/init-normal2.jpg)
  
 6. ### ELB Backend ECS Instance - fresh
-Check the ELB instance elb-demo and choose Backend ECS tab, you can see an ECS instance is registered to it. If you see the Health Check is Abnormal, do not worry, wait for some minutes. Eventually the backend ECS instance’s Health Check will be Normal.
+Check the ELB elb-demo and choose Backend ECS tab, you can see an ECS instance is registered to it. If you see the Health Check is Abnormal, do not worry, wait for some minutes. Eventually the backend ECS instance’s Health Check will be Normal.
+
+![Initializing Status](/images/elb-backend.jpg)
  
 7. ### Access Web Application
 Now, it’s time to access the web application. Open a web browser and input: http://www.hwcping.com.br
 
 **NOTE:** Please use the correct ELB Service IP address in your environment. For this example, the url is: http://www.hwcping.com.br . If there is nothing wrong, you will see the following web page. Check the IP Address it printed if the same as your ECS instance private IP address.
- 
+
+*Web Server 01*
+![Initializing Status](/images/web-app01.jpg)
+
+*Web Server 02*
+![Initializing Status](/images/web-app02.jpg)
+
 8. ### Make sure CPU high policy is enabled
 Now, go to AS Group -> Policy to make sure the polices created are Enabled. If not, please enable them.
+
+![Initializing Status](/images/as-policy-check.jpg)
  
 9. ### Spike's CPU
 If you follow me util here, **Congratulations!** 
